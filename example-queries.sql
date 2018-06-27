@@ -33,6 +33,9 @@ where id=1;
 update Users
 set Age='38'
 where id=1;
+
+delete from Users
+where id=2;
 -- -----------------
 -- MEDICINE QUERIES
 -- -----------------
@@ -68,6 +71,8 @@ update Medicine
 set ExpDate='08/31/2018'
 where MedId=1;
 
+delete from Medicine
+where MedId=2;
 -- -----------------
 -- SHOT QUERIES
 -- -----------------
@@ -93,3 +98,29 @@ where MedId=1;
 update Shot
 set Notes='Allergic to Ampecillin and Advil'
 where MedId=1;
+
+---------------------
+-- JOINS
+---------------------
+
+-- Get users first and last name and medicine name
+select distinct firstname, lastname, medname
+from users a
+left join medicine b
+    on b.userid = userid
+
+    
+-- Get user specific meds
+select medname, amtavail, lotnum, expdate
+from medicine
+inner join users
+    on users.id = medicine.userid
+where users.id = 7;
+
+
+-- Get shot details based off medicine
+select shottime, shotlocation, notes
+from shot
+inner join medicine
+    on shot.medid = medicine.medid
+where medicine.medid = 1;
