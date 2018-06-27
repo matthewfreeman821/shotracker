@@ -12,7 +12,8 @@ create table Users (
 
 create table Medicine (
     MedId serial primary key,
-    UserId foreign key references Users(id),
+    UserId int,
+    foreign key (UserId) references Users(id),
     AmtAvail varchar(15),
     LotNum varchar(100),
     ExpDate varchar(10)
@@ -20,7 +21,8 @@ create table Medicine (
 
 create table Shot (
     ShotTime timestamp,
-    MedId foreign key references Medicine(MedId),
+    MedId int,
+    foreign key (MedId) references Medicine(MedId),
     Notes varchar(500),
     ShotLocation varchar(30)
 );
