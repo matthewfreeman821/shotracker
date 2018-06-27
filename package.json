@@ -1,7 +1,6 @@
 {
   "name": "shottracker",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +10,16 @@
   "dependencies": {
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.11",
     "pg-promise": "^8.4.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewfreeman821/shotracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matthewfreeman821/shotracker/issues"
+  },
+  "homepage": "https://github.com/matthewfreeman821/shotracker#readme",
+  "description": ""
 }
