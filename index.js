@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 
 // LIST ALL USER INFO
 app.get('/info', (req, res) => {
-    ShotTracker.getAllUsersById(1)
+    ShotTracker.getAllUsersById(7)
         .then((data) => {
             console.log(data);
             res.render('infopage', {
@@ -44,9 +44,38 @@ app.get('/info', (req, res) => {
         });
 });
 
+// CREATE NEW USER
+app.get('/newinfo', (req, res) => {
+    console.log('This is the /newinfo route');
+    res.render('info-create-page');
+});
+
+app.post('/newinfo', (req, res) => {
+    console.log(req.body);
+    // res.send('hey you submitted the form')
+ 
+    ShotTracker.addUser('12',
+    req.body.LastName,
+    req.body.FirstName,
+    req.body.Email,
+    req.body.Age,
+    req.body.Height,
+    req.body.Weight,
+    req.body.Gender,
+    req.body.Ethnicity)
+    .then((data) => {
+        // console.log(data);
+        // res.send(data);
+        res.redirect(`/info`);
+    })
+    .catch((error) =>{
+        console.log(error);
+    })
+});
+
 // LIST ALL MEDS
 app.get('/med', (req, res) => {
-    ShotTracker.getAllMedicineByUserId(1)
+    ShotTracker.getAllMedicineByUserId(3)
         .then((data) => {
             console.log(data);
             res.render('medpage', {
@@ -59,6 +88,28 @@ app.get('/med', (req, res) => {
         });
 });
 
+// CREATE NEW MED
+app.get('/newmed', (req, res) => {
+    console.log('This is the /newmed route');
+    res.render('med-create-page');
+});
+
+app.post('/newmed', (req, res) => {
+    console.log(req.body);
+    // res.send('hey you submitted the form')
+
+    ShotTracker.addMed(
+    req.body.MedName,
+    '7',
+    req.body.AmtAvail,
+    req.body.LotNum,
+    req.body.ExpDate)
+    .then((data) => {
+        // console.log(data);
+        // res.send(data);
+        res.redirect(`/med`);
+    })
+});
 
 // LIST ALL SHOT RECORDS
 app.get('/record', (req, res) => {
@@ -75,7 +126,27 @@ app.get('/record', (req, res) => {
         });
 });
 
+// CREATE NEW SHOT RECORD
+app.get('/newrecord', (req, res) => {
+    console.log('This is the /newrecord route');
+    res.render('shot-create-page');
+});
 
+app.post('/newrecord', (req, res) => {
+    console.log(req.body);
+    // res.send('hey you submitted the form')
+
+    ShotTracker.addShot(
+    '4',
+    req.body.ShotTime,
+    req.body.ShotLocation,
+    req.body.Notes)
+    .then((data) => {
+        // console.log(data);
+        // res.send(data);
+        res.redirect(`/record`);
+    })
+});
 
 
 // LISTEN FOR LOCALHOST SERVER

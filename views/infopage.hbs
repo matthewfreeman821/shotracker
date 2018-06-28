@@ -1,5 +1,6 @@
 {{#each Users}} 
-    <form></form>
+    <form>
+        <input type="integer" name="GithubId" value="{{githubid}}" placeholder="GitHub Id">
         <input type="text" name="LastName" value="{{lastname}}" placeholder="Last Name">
         <input type="text" name="FirstName" value="{{firstname}}" placeholder="First"><br>
         <input type="email" name="Email" value="{{email}}" placeholder="Email@email.com"><br>
@@ -11,3 +12,10 @@
         <input type="text" name="Ethnicity" value="{{ethnicity}}" placeholder="Ethnicity"><br>
     </form>
 {{/each}}
+
+<button>
+    <a href="/">Return Home</a>
+</button>
+<button>
+    <a href="/newinfo">Add New Info</a>
+</button>

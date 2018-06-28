@@ -101,7 +101,7 @@ where ShotId=1;
 update Shot
 set ShotLocation='Right Shoulder'
 where ShotId=1;
-
+    
 -- Update Shot Notes
 update Shot
 set Notes='Allergic to Ampecillin and Advil'

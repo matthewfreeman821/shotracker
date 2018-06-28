@@ -52,9 +52,26 @@ function deleteUserById(id){
     return db.result('delete from Users where id=$1', [id])
 };
 // ADD USER
-function addUser(LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity){
-    return db.one("insert into Users (LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity) values ('$1#', '$2#', '$3#', '$4#', '$5#', '$6#', '$7#', '$8#') returning id", [LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity]);
+function addUser(Info){
+    return db.one("insert into Users (GithubId, LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity) values ($1, '$2#', '$3#', '$4#', '$5#', '$6#', '$7#', '$8#', '$9#') returning id", Info);
 };
+
+// var userInfo = [
+//    '2',
+//    'Bobby',
+//    'Ricky',
+//    'gotfast@one.com',
+//    '14',
+//    '123',
+//    '213',
+//    'on',
+//    'Caucasian' 
+// ]
+// addUser(userInfo)
+// .then(console.log)
+// .catch(console.log)
+
+
 // MED
 // ----------------------------------------------
 
@@ -92,7 +109,7 @@ function deleteMedById(MedId){
 };
 // ADD MEDS
 function addMed(MedName, UserId,  AmtAvail, LotNum, ExpDate){
-    return db.one("insert into Medicine (MedName, UserId, AmtAvail, LotNum, ExpDate) values ('$1#', '$2#', '$3#', '$4#', '$5#') returning id", [MedName, UserId, AmtAvail, LotNum, ExpDate]);
+    return db.one("insert into Medicine (MedName, UserId, AmtAvail, LotNum, ExpDate) values ('$1#', '$2#', '$3#', '$4#', '$5#') returning MedId", [MedName, UserId, AmtAvail, LotNum, ExpDate]);
 };
 
 // SHOTS
@@ -124,7 +141,7 @@ function setShotNotes(MedId, newTitle){
 };
 // ADD NEW SHOT RECORD
 function addShot(MedId, ShotTime, ShotLocation, Notes){
-    return db.one("insert into Shot (MedId, ShotTime, ShotLocation, Notes) values ('$1#', '$2#', '$3#', '$4#') returning id", [MedId, ShotTime, ShotLocation, Notes]);
+    return db.one("insert into Shot (MedId, ShotTime, ShotLocation, Notes) values ('$1#', '$2#', '$3#', '$4#') returning MedId", [MedId, ShotTime, ShotLocation, Notes]);
 };
 // DELETE SHOT RECORD
 function deleteShotById(MedId){

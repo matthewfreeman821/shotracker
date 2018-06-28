@@ -1,8 +1,8 @@
 -- User Table
 insert into Users
-	(LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity)
+	(GithubId, LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity)
 values
-	('Dirt','Joe','dirtyjoe@dirt.com','70 in','275 lbs','37','Male','Caucasian')	
+	(1,'Dirt','Joe','dirtyjoe@dirt.com','70 in','275 lbs','37','Male','Caucasian')	
 ;
 -- Medicine Table
 insert into Medicine
@@ -12,8 +12,8 @@ values
 ;
 -- Shot Info Table
 insert into Shot
-    (MedId, ShotId, ShotTime, ShotLocation, Notes)
+    (MedId, ShotTime, ShotLocation, Notes)
 values
-    (1, 1, '2018/06/30 05:33:47', 'Left Shoulder', 'Allergic to Ampecillin')
+    (1, '2018/06/30 05:33:47', 'Left Shoulder', 'Allergic to Ampecillin')
 ;
 

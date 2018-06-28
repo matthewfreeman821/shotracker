@@ -13,7 +13,7 @@ create table Users (
 
 create table Medicine (
     MedId serial primary key,
-    MedName varchar(30)
+    MedName varchar(30),
     UserId int,
     foreign key (UserId) references Users(id),
     AmtAvail varchar(15),
