@@ -12,8 +12,8 @@ values
 ;
 -- Shot Info Table
 insert into Shot
-    (MedId, ShotTime, ShotLocation, Notes)
+    (MedId, ShotId, ShotTime, ShotLocation, Notes)
 values
-    (1, '2018/06/30 05:33:47', 'Left Shoulder', 'Allergic to Ampecillin')
+    (1, 1, '2018/06/30 05:33:47', 'Left Shoulder', 'Allergic to Ampecillin')
 ;
 

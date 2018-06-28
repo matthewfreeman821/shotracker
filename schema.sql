@@ -1,5 +1,6 @@
 create table Users (
     id serial primary key,
+    GithubId int not null unique, 
     LastName varchar(20),
     FirstName varchar(20),
     Email varchar(50),
@@ -21,6 +22,7 @@ create table Medicine (
 );
 
 create table Shot (
+    ShotId serial primary key,
     ShotTime timestamp,
     MedId int,
     foreign key (MedId) references Medicine(MedId),

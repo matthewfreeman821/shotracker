@@ -9,6 +9,10 @@ select * from Users;
 select * from Users
 where id=1;
 
+-- Get User by GithubId
+select * from Users
+where GithubId=1;
+
 -- Update User LastName
 update Users
 set LastName='dirt-bobby'
@@ -45,7 +49,7 @@ select * from Medicine;
 
 -- Get Medicine by Id
 select * from Medicine
-where MedId=1;
+where UserId=1;
 
 -- Get Medicine by Name(Any text related to Name such as Boo for example below)
 select * from Medicine
@@ -84,38 +88,41 @@ select * from Shot;
 select * from Shot
 where MedId=1;
 
+-- Get Specific Shot Info for Med by Shot Id
+select * from Shot
+where ShotId=1;
+
 -- Update Shot Time
 update Shot
 set ShotTime='2018/06/27 13:33:33'
-where MedId=1;
+where ShotId=1;
 
 -- Update Shot Location
 update Shot
 set ShotLocation='Right Shoulder'
-where MedId=1;
+where ShotId=1;
 
 -- Update Shot Notes
 update Shot
 set Notes='Allergic to Ampecillin and Advil'
-where MedId=1;
+where ShotId=1;
 
 ---------------------
 -- JOINS
 ---------------------
 
--- Get users first and last name and medicine name
-select distinct firstname, lastname, medname
-from users a
-left join medicine b
-    on b.userid = userid
-
-    
 -- Get user specific meds
-select medname, amtavail, lotnum, expdate
+select lastname, firstname, medname
 from medicine
 inner join users
     on users.id = medicine.userid
-where users.id = 7;
+    where users.id = 1;
+
+
+-- Get user specific meds
+select medname, amtavail, lotnum, expdate
+from medicine
+where userid = 1;
 
 
 -- Get shot details based off medicine

@@ -1,0 +1,13 @@
+{{#each Users}} 
+    <form></form>
+        <input type="text" name="LastName" value="{{lastname}}" placeholder="Last Name">
+        <input type="text" name="FirstName" value="{{firstname}}" placeholder="First"><br>
+        <input type="email" name="Email" value="{{email}}" placeholder="Email@email.com"><br>
+        <input type="number" name="Age" value="{{age}}" placeholder="Years Old">
+        <input type="number" name="Height" value="{{height}}" placeholder="In Inches">
+        <input type="number" name="Weight" value="{{bodyweight}}" placeholder="In Lbs"><br>
+        <input type="checkbox" name="Gender" value="{{gender}}" checked>Male
+        <input type="checkbox" name="Gender" value="{{gender}}">Female<br>
+        <input type="text" name="Ethnicity" value="{{ethnicity}}" placeholder="Ethnicity"><br>
+    </form>
+{{/each}}
