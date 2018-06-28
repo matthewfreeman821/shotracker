@@ -21,6 +21,7 @@ create table Medicine (
 );
 
 create table Shot (
+    ShotId serial primary key,
     ShotTime timestamp,
     MedId int,
     foreign key (MedId) references Medicine(MedId),

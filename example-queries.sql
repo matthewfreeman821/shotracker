@@ -87,27 +87,28 @@ where MedId=1;
 -- Update Shot Time
 update Shot
 set ShotTime='2018/06/27 13:33:33'
-where MedId=1;
+where ShotId=1;
 
 -- Update Shot Location
 update Shot
 set ShotLocation='Right Shoulder'
-where MedId=1;
+where ShotId=1;
 
 -- Update Shot Notes
 update Shot
 set Notes='Allergic to Ampecillin and Advil'
-where MedId=1;
+where ShotId=1;
 
 ---------------------
 -- JOINS
 ---------------------
 
 -- Get users first and last name and medicine name
-select distinct firstname, lastname, medname
-from users a
-left join medicine b
-    on b.userid = userid
+select lastname, firstname, medname
+from medicine
+inner join users
+    on users.id = medicine.userid
+where users.id = 7;
 
     
 -- Get user specific meds
