@@ -307,7 +307,7 @@ app.post('/record/:medid/:shotid', (req, res) =>{
 });
 
 // DELETE SHOT INFO
-app.get('/deleterecord/:medid//:shotid', (req, res) => {
+app.get('/deleterecord/:medid/:shotid', (req, res) => {
     ShotTracker.getShotRecord(req.params.shotid)
     .then((data) => {
         console.log(data);
