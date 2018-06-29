@@ -15,7 +15,8 @@ create table Medicine (
     MedId serial primary key,
     MedName varchar(30),
     UserId int,
-    foreign key (UserId) references Users(id),
+    foreign key (UserId) references Users(id)
+    on delete cascade,
     AmtAvail varchar(15),
     LotNum varchar(100),
     ExpDate varchar(30)
@@ -25,7 +26,8 @@ create table Shot (
     ShotId serial primary key,
     ShotTime timestamp,
     MedId int,
-    foreign key (MedId) references Medicine(MedId),
+    foreign key (MedId) references Medicine(MedId)
+    on delete cascade,
     Notes varchar(500),
     ShotLocation varchar(30)
 );

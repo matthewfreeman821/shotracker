@@ -1,23 +1,18 @@
-    <form>
-        <input type="integer" name="GithubId" value="{{githubid}}" placeholder="GitHub Id">
+
+<form action="/{{id}}/info" method="POST">
         <input type="text" name="LastName" value="{{lastname}}" placeholder="Last Name">
         <input type="text" name="FirstName" value="{{firstname}}" placeholder="First"><br>
         <input type="email" name="Email" value="{{email}}" placeholder="Email@email.com"><br>
         <input type="number" name="Age" value="{{age}}" placeholder="Years Old">
         <input type="number" name="Height" value="{{height}}" placeholder="In Inches">
-        <input type="number" name="Weight" value="{{bodyweight}}" placeholder="In Lbs"><br>
+        <input type="number" name="BodyWeight" value="{{bodyweight}}" placeholder="In Lbs"><br>
         <input type="checkbox" name="Gender" value="{{gender}}" checked>Male
         <input type="checkbox" name="Gender" value="{{gender}}">Female<br>
         <input type="text" name="Ethnicity" value="{{ethnicity}}" placeholder="Ethnicity"><br>
+        <input type="submit">
+        <input type="reset">
     </form>
-    <hr>
-    <button>
-    <a href="/{{id}}/info">Edit Info</a>
-    </button>
 
 <button>
     <a href="/">Return Home</a>
-</button>
-<button>
-    <a href="/newinfo">Add New Info</a>
 </button>

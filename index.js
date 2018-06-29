@@ -29,15 +29,14 @@ app.get('/', (req, res) => {
     res.render('homepage');
 });
 
+// USER ROUTES-------------------------------------------------------------------------------
+
 // LIST ALL USER INFO
 app.get('/info', (req, res) => {
-    ShotTracker.getAllUsersById(7)
+    ShotTracker.getUserById(1)
         .then((data) => {
             console.log(data);
-            res.render('infopage', {
-                Users: data,
-                // isLoggedIn: req.isAuthenticated()
-            });
+            res.render('infopage', data);
         })
         .catch((error) => {
             console.log(error);
@@ -73,9 +72,47 @@ app.post('/newinfo', (req, res) => {
     })
 });
 
+// EDIT USER INFO BY ID
+app.get('/:id/info', (req, res) =>{
+    ShotTracker.getUserById(1)
+        .then((data) =>{
+            console.log(data);
+            res.render('info-edit-page', data);
+            // res.send(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+});
+
+app.post('/:id/info', (req, res) =>{
+    console.log('INFO SHOULD CHANGE BELOW');
+    console.log(req.body)
+    ShotTracker.setUserById(
+        req.params.id, 
+        req.body.LastName, 
+        req.body.FirstName, 
+        req.body.Email, 
+        req.body.Height, 
+        req.body.BodyWeight, 
+        req.body.Age, 
+        req.body.Gender, 
+        req.body.Ethnicity)
+    .then((data) => {
+        console.log(data);
+        res.redirect(`/info`);
+    })
+    .catch((error) =>{
+        console.log(error);
+    })
+});
+
+// MED ROUTES-------------------------------------------------------------------------------
+
+
 // LIST ALL MEDS
 app.get('/med', (req, res) => {
-    ShotTracker.getAllMedicineByUserId(3)
+    ShotTracker.getAllMedicineByUserId(1)
         .then((data) => {
             console.log(data);
             res.render('medpage', {
@@ -100,7 +137,7 @@ app.post('/newmed', (req, res) => {
 
     ShotTracker.addMed(
     req.body.MedName,
-    '7',
+    '1',
     req.body.AmtAvail,
     req.body.LotNum,
     req.body.ExpDate)
@@ -111,9 +148,43 @@ app.post('/newmed', (req, res) => {
     })
 });
 
+// EDIT MED INFO
+app.get('/:medid/med', (req, res) =>{
+    ShotTracker.getMedicineByMedId(1)
+        .then((data) =>{
+            console.log(data);
+            res.render('med-edit-page', data);
+            // res.send(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+});
+
+app.post('/:medid/med', (req, res) =>{
+    console.log('INFO SHOULD CHANGE BELOW');
+    console.log(req.body)
+    ShotTracker.setMedById(
+        req.params.medid, 
+        req.body.MedName,   
+        req.body.AmtAvail, 
+        req.body.LotNum, 
+        req.body.ExpDate)
+    .then((data) => {
+        console.log(data);
+        res.redirect(`/med`);
+    })
+    .catch((error) =>{
+        console.log(error);
+    })
+});
+
+// SHOT ROUTES-------------------------------------------------------------------------------
+
+
 // LIST ALL SHOT RECORDS
 app.get('/record', (req, res) => {
-    ShotTracker.getAllShot()
+    ShotTracker.getMedShot(1)
         .then((data) => {
             console.log(data);
             res.render('recordpage', {
@@ -137,7 +208,7 @@ app.post('/newrecord', (req, res) => {
     // res.send('hey you submitted the form')
 
     ShotTracker.addShot(
-    '4',
+    '1',
     req.body.ShotTime,
     req.body.ShotLocation,
     req.body.Notes)
@@ -145,6 +216,37 @@ app.post('/newrecord', (req, res) => {
         // console.log(data);
         // res.send(data);
         res.redirect(`/record`);
+    })
+});
+
+// EDIT SHOT RECORDS
+app.get('/:shotid/record', (req, res) =>{
+    ShotTracker.getMedicineByMedId(1)
+        .then((data) =>{
+            console.log(data);
+            res.render('med-edit-page', data);
+            // res.send(data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+});
+console.log('WHAT UP')
+app.post('/:shotid/record', (req, res) =>{
+    console.log('INFO SHOULD CHANGE BELOW');
+    console.log(req.body)
+    ShotTracker.setMedById(
+        req.params.medid, 
+        req.body.MedName,   
+        req.body.AmtAvail, 
+        req.body.LotNum, 
+        req.body.ExpDate)
+    .then((data) => {
+        console.log(data);
+        res.redirect(`/med`);
+    })
+    .catch((error) =>{
+        console.log(error);
     })
 });
 
