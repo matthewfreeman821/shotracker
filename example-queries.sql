@@ -101,7 +101,7 @@ where ShotId=1;
 update Shot
 set ShotLocation='Right Shoulder'
 where ShotId=1;
-    
+
 -- Update Shot Notes
 update Shot
 set Notes='Allergic to Ampecillin and Advil'
@@ -124,10 +124,10 @@ select medname, amtavail, lotnum, expdate
 from medicine
 where userid = 1;
 
-
 -- Get shot details based off medicine
 select shottime, shotlocation, notes
 from shot
 inner join medicine
     on shot.medid = medicine.medid
 where medicine.medid = 1;
+

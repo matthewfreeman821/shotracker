@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+
 const pgp = require('pg-promise')();
 const cn = {
     host: 'localhost',
@@ -88,7 +89,6 @@ function addUser(GithubId, LastName, FirstName, Email, Height, BodyWeight, Age, 
 // .then(console.log)
 // .catch(console.log)
 
-
 // MED
 // ----------------------------------------------
 
@@ -108,6 +108,7 @@ function getMedicineByMedId(MedId) {
 function getMedsByName(searchString){
     return db.any("select * from Medicine where title ilike '%$1#%'", [searchString]);
 };
+
 // Update Medicine By ID
 function setMedById(MedId, MedName,  AmtAvail, LotNum, ExpDate){
     return db.result("update Medicine set(MedName, AmtAvail, LotNum, ExpDate)=('$1#', '$2#', '$3#', '$4#') where MedId=$5", [MedName, AmtAvail, LotNum, ExpDate, MedId])
@@ -148,6 +149,7 @@ function getAllShot(){
 function getMedShot(MedId){
     return db.any('select * from Shot where MedId=$1', [MedId]);
 };
+
 // Get Specific Shot Records By Shot Id
 function getShotRecord(ShotId){
     return db.oneOrNone('select * from Shot where ShotId=$1', [ShotId]);
