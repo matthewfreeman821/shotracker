@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "resetdb": "dropdb shottracker; createdb shottracker",
+    "resetdb": "dropdb shottracker; createdb shottracker; psql -d shottracker -f schema.sql; psql-d shottracker -f dummy-data.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

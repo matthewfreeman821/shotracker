@@ -4,6 +4,12 @@
         <input type="text" name="ShotLocation" value="{{shotlocation}}" placeholder="Shot Location"><br>
         <textarea name="Notes" id="" cols="30" rows="10">{{notes}}</textarea>
     </form>
+    <button>
+    <a href="/{{shotid}}/record">Edit Record</a>
+    </button>
+        <button>
+    <a href="/{{shotid}}/deleterecord">Delete Shot Record</a>
+    </button>
 {{/each}}
 
 <button>

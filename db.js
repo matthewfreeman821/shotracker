@@ -69,8 +69,8 @@ function deleteUserById(id){
     return db.result('delete from Users where id=$1', [id])
 };
 // ADD USER
-function addUser(Info){
-    return db.one("insert into Users (GithubId, LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity) values ($1, '$2#', '$3#', '$4#', '$5#', '$6#', '$7#', '$8#', '$9#') returning id", Info);
+function addUser(GithubId, LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity){
+    return db.one("insert into Users (GithubId, LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity) values ($1, '$2#', '$3#', '$4#', '$5#', '$6#', '$7#', '$8#', '$9#') returning id", [GithubId, LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity]);
 };
 
 // var userInfo = [
@@ -111,7 +111,7 @@ function getMedsByName(searchString){
 // Update Medicine By ID
 function setMedById(MedId, MedName,  AmtAvail, LotNum, ExpDate){
     return db.result("update Medicine set(MedName, AmtAvail, LotNum, ExpDate)=('$1#', '$2#', '$3#', '$4#') where MedId=$5", [MedName, AmtAvail, LotNum, ExpDate, MedId])
-}
+};
 // Update Medicine Name
 function setMedName(MedId, newTitle){
     return db.result("update Medicine set MedName='$1#' where MedId=$2", [newTitle, MedId]);
@@ -130,7 +130,7 @@ function setMedExpDate(MedId, newTitle){
 };
 // DELTE MEDS
 function deleteMedById(MedId){
-    return db.result('delete from Medicine where id=$1', [MedId])
+    return db.result('delete from Medicine where MedId=$1', [MedId])
 };
 // ADD MEDS
 function addMed(MedName, UserId,  AmtAvail, LotNum, ExpDate){
@@ -150,7 +150,11 @@ function getMedShot(MedId){
 };
 // Get Specific Shot Records By Shot Id
 function getShotRecord(ShotId){
-    return db.any('select * from Shot where ShotId=$1', [ShotId]);
+    return db.oneOrNone('select * from Shot where ShotId=$1', [ShotId]);
+};
+// Update Shot Records By ID
+function setShotById(ShotId, ShotTime, ShotLocation, Notes){
+    return db.result("update Shot set(ShotTime, ShotLocation, Notes)=('$1#', '$2#', '$3#') where ShotId=$4", [ShotTime, ShotLocation, Notes, ShotId])
 };
 // Update Shot Time
 function setShotTime(MedId, newTitle){
@@ -169,8 +173,8 @@ function addShot(MedId, ShotTime, ShotLocation, Notes){
     return db.one("insert into Shot (MedId, ShotTime, ShotLocation, Notes) values ('$1#', '$2#', '$3#', '$4#') returning ShotId", [MedId, ShotTime, ShotLocation, Notes]);
 };
 // DELETE SHOT RECORD
-function deleteShotById(MedId){
-    return db.result('delete from Shot where MedId=$1', [MedId])
+function deleteShotById(ShotId){
+    return db.result('delete from Shot where ShotId=$1', [ShotId])
 };
 
 // -------------------------------
@@ -191,6 +195,7 @@ module.exports = {
     setUserHeight,
     setUserWeight,
     setUserAge,
+    setShotById,
     setShotTime,
     setShotLocation,
     setShotNotes,
