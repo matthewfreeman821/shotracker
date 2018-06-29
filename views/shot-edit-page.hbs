@@ -1,0 +1,15 @@
+    <form action="/{{shotid}}/record" method="POST">
+        <input type="text" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS">
+        <input type="text" name="ShotLocation" value="{{shotlocation}}" placeholder="Shot Location"><br>
+        <textarea name="Notes" cols="30" rows="10">{{notes}}</textarea>
+        <input type="submit">
+        <input type="reset">
+    </form>
+
+<button>
+    <a href="/record">Return to Record Page</a>
+</button>
+
+<button>
+    <a href="/">Return Home</a>
+</button>
