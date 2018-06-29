@@ -1,0 +1,21 @@
+{{#each Medicine}} 
+    <form>
+        <input type="text" name="MedName" value="{{medname}}" placeholder="Med Name">
+        <input type="text" name="AmtAvail" value="{{amtavail}}" placeholder="Quantity Remaining">
+        <input type="text" name="LotNum" value="{{lotnum}}" placeholder="Numbers/Letters">
+        <input type="text" name="ExpDate" value="{{expdate}}" placeholder="MM/DD/YYYY">
+    </form>
+    <button>
+        <a href="/{{medid}}/med">Edit Medicine</a>
+    </button>
+    <button>
+        <a href="/{{medid}}/deletemed">Delete Medicine</a>
+    </button>
+{{/each}}
+
+<button>
+    <a href="/">Return Home</a>
+</button>
+<button>
+    <a href="/newmed">Add New Med</a>
+</button>
