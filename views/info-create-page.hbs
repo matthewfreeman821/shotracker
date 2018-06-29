@@ -1,16 +1,13 @@
-    <form action="/newinfo" method="POST">
-        <input type="number" name="GithubId" placeholder="GitHub Id">
-        <input type="text" name="LastName" placeholder="Last Name">
-        <input type="text" name="FirstName" placeholder="First"><br>
-        <input type="email" name="Email" placeholder="Email@email.com"><br>
-        <input type="number" name="Age" placeholder="Years Old">
-        <input type="number" name="Height" placeholder="In Inches">
-        <input type="number" name="Weight" placeholder="In Lbs"><br>
-        <input type="checkbox" name="Gender" checked>Male
-        <input type="checkbox" name="Gender">Female<br>
-        <input type="text" name="Ethnicity" placeholder="Ethnicity"><br>
+<form action="/newinfo" method="POST">
+        <input type="text" name="LastName" value="{{lastname}}" placeholder="Last Name">
+        <input type="text" name="FirstName" value="{{firstname}}" placeholder="First"><br>
+        <input type="email" name="Email" value="{{email}}" placeholder="Email@email.com"><br>
+        <input type="number" name="Age" value="{{age}}" placeholder="Years Old">
+        <input type="number" name="Height" value="{{height}}" placeholder="In Inches">
+        <input type="number" name="BodyWeight" value="{{bodyweight}}" placeholder="In Lbs"><br>
+        <input type="text" name="Gender" value="{{gender}}">Male or Female<br>
+        <input type="text" name="Ethnicity" value="{{ethnicity}}" placeholder="Ethnicity"><br>
         <input type="submit">
-        <input type="reset">
     </form>
 
     <button>

@@ -4,8 +4,8 @@ dotenv.config();
 const express = require('express');
 const app = express();
 
-// const setupAuth = require('./auth');
-// const ensureAuthenticated = require('./auth').ensureAuthenticated;
+const setupAuth = require('./auth');
+const ensureAuthenticated = require('./auth').ensureAuthenticated;
 
 const bodyParser = require('body-parser');
 
@@ -22,18 +22,20 @@ app.set('view engine', '.hbs');
 const static = express.static;
 app.use(static('public'));
 
-// setupAuth(app);
+setupAuth(app);
 
 // LOGIN PAGE/NAV
 app.get('/', (req, res) => {
-    res.render('homepage');
+    res.render('homepage', {
+        isLoggedIn: req.session.passport && req.session.passport.user
+    });
 });
 
 // USER ROUTES-------------------------------------------------------------------------------
 
 // LIST ALL USER INFO
 app.get('/info', (req, res) => {
-    ShotTracker.getUserById(1)
+    ShotTracker.getUserById(req.session.passport.user)
         .then((data) => {
             console.log(data);
             res.render('infopage', data);
@@ -44,16 +46,22 @@ app.get('/info', (req, res) => {
 });
 
 // CREATE NEW USER
-app.get('/newinfo', (req, res) => {
-    console.log('This is the /newinfo route');
-    res.render('info-create-page');
+app.get('/newinfo', ensureAuthenticated, (req, res) => {
+    ShotTracker.getUserById(req.session.passport.user)
+    .then((data) => {
+        console.log(data);
+        res.render('info-create-page', data);
+    })
+    .catch((error) =>{
+        console.log(error)
+    });
 });
 
 app.post('/newinfo', (req, res) => {
     console.log(req.body);
     // res.send('hey you submitted the form')
  
-    ShotTracker.addUser('12',
+    ShotTracker.updateUser(
     req.body.LastName,
     req.body.FirstName,
     req.body.Email,
@@ -74,7 +82,7 @@ app.post('/newinfo', (req, res) => {
 
 // EDIT USER INFO BY ID
 app.get('/:id/info', (req, res) =>{
-    ShotTracker.getUserById(1)
+    ShotTracker.getUserById(req.session.passport.user)
         .then((data) =>{
             console.log(data);
             res.render('info-edit-page', data);
@@ -109,7 +117,7 @@ app.post('/:id/info', (req, res) =>{
 
 // DELETE USER INFO
 app.get('/:id/deleteinfo', (req, res) => {
-    ShotTracker.getUserById(1)
+    ShotTracker.getUserById(req.session.passport.user)
     .then((data) => {
         console.log(data);
         res.render('info-delete-page', data);
@@ -120,7 +128,7 @@ app.get('/:id/deleteinfo', (req, res) => {
 });
 
 app.post('/:id/deleteinfo', (req, res) => {
-        ShotTracker.deleteUserById(1)
+        ShotTracker.deleteUserById(req.session.passport.user)
         .then((data) => {
             console.log(data);
             res.render('infopage');
@@ -135,7 +143,7 @@ app.post('/:id/deleteinfo', (req, res) => {
 
 // LIST ALL MEDS
 app.get('/med', (req, res) => {
-    ShotTracker.getAllMedicineByUserId(1)
+    ShotTracker.getAllMedicineByUserId(req.session.passport.user)
         .then((data) => {
             console.log(data);
             res.render('medpage', {
@@ -160,7 +168,7 @@ app.post('/newmed', (req, res) => {
 
     ShotTracker.addMed(
     req.body.MedName,
-    '1',
+    req.session.passport.user,
     req.body.AmtAvail,
     req.body.LotNum,
     req.body.ExpDate)
@@ -173,7 +181,7 @@ app.post('/newmed', (req, res) => {
 
 // EDIT MED INFO
 app.get('/:medid/med', (req, res) =>{
-    ShotTracker.getMedicineByMedId(1)
+    ShotTracker.getMedicineByMedId(req.params.medid)
         .then((data) =>{
             console.log(data);
             res.render('med-edit-page', data);
@@ -204,7 +212,7 @@ app.post('/:medid/med', (req, res) =>{
 
 // DELETE MED INFO
 app.get('/:medid/deletemed', (req, res) => {
-    ShotTracker.getMedicineByMedId(1)
+    ShotTracker.getMedicineByMedId(req.params.medid)
     .then((data) => {
         console.log(data);
         res.render('med-delete-page', data);
@@ -215,7 +223,7 @@ app.get('/:medid/deletemed', (req, res) => {
 });
 
 app.post('/:medid/deletemed', (req, res) => {
-        ShotTracker.deleteMedById(1)
+        ShotTracker.deleteMedById(req.params.medid)
         .then((data) => {
             console.log(data) 
             res.redirect('/med');
@@ -229,12 +237,13 @@ app.post('/:medid/deletemed', (req, res) => {
 
 
 // LIST ALL SHOT RECORDS
-app.get('/record', (req, res) => {
-    ShotTracker.getMedShot(1)
+app.get('/record/:medid', (req, res) => {
+    ShotTracker.getMedShot(req.params.medid)
         .then((data) => {
             console.log(data);
             res.render('recordpage', {
                 Shot: data,
+                medid: req.params.medid
                 // isLoggedIn: req.isAuthenticated()
             });
         })
@@ -244,30 +253,32 @@ app.get('/record', (req, res) => {
 });
 
 // CREATE NEW SHOT RECORD
-app.get('/newrecord', (req, res) => {
+app.get('/newrecord/:medid', (req, res) => {
     console.log('This is the /newrecord route');
-    res.render('shot-create-page');
+    res.render('shot-create-page', {
+        medid: req.params.medid
+    });
 });
 
-app.post('/newrecord', (req, res) => {
+app.post('/newrecord/:medid', (req, res) => {
     console.log(req.body);
+    console.log(req.params.medid);
     // res.send('hey you submitted the form')
-
     ShotTracker.addShot(
-    '1',
+    req.params.medid,
     req.body.ShotTime,
     req.body.ShotLocation,
     req.body.Notes)
     .then((data) => {
         // console.log(data);
         // res.send(data);
-        res.redirect(`/record`);
+        res.redirect(`/record/${req.params.medid}`);
     })
 });
 
 // EDIT SHOT RECORDS
-app.get('/:shotid/record', (req, res) =>{
-    ShotTracker.getShotRecord(1)
+app.get('/record/:medid/:shotid', (req, res) =>{
+    ShotTracker.getShotRecord(req.params.shotid)
         .then((data) =>{
             console.log(data);
             res.render('shot-edit-page', data);
@@ -278,7 +289,7 @@ app.get('/:shotid/record', (req, res) =>{
         })
 });
 console.log('WHAT UP')
-app.post('/:shotid/record', (req, res) =>{
+app.post('/record/:medid/:shotid', (req, res) =>{
     console.log('INFO SHOULD CHANGE BELOW');
     console.log(req.body)
     ShotTracker.setShotById(
@@ -288,7 +299,7 @@ app.post('/:shotid/record', (req, res) =>{
         req.body.Notes) 
     .then((data) => {
         console.log(data);
-        res.redirect(`/record`);
+        res.redirect(`/record/${req.params.medid}`);
     })
     .catch((error) =>{
         console.log(error);
@@ -296,10 +307,11 @@ app.post('/:shotid/record', (req, res) =>{
 });
 
 // DELETE SHOT INFO
-app.get('/:shotid/deleterecord', (req, res) => {
-    ShotTracker.getShotRecord(1)
+app.get('/deleterecord/:medid//:shotid', (req, res) => {
+    ShotTracker.getShotRecord(req.params.shotid)
     .then((data) => {
         console.log(data);
+        data.shotid=req.params.shotid;
         res.render('shot-delete-page', data);
     })
     .catch((error) => {
@@ -307,11 +319,11 @@ app.get('/:shotid/deleterecord', (req, res) => {
     })
 });
 
-app.post('/:shotid/deleterecord', (req, res) => {
-        ShotTracker.deleteShotById(1)
+app.post('/deleterecord/:medid/:shotid', (req, res) => {
+        ShotTracker.deleteShotById(req.params.shotid)
         .then((data) => {
             console.log(data) 
-            res.redirect('/record');
+            res.redirect(`/record/${req.body.medid}`);
             })
         .catch((error) =>{
             console.log(error);

@@ -1,14 +1,14 @@
 {{#each Shot}} 
     <form>
-        <input type="text" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS">
+        <input type="date" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS">
         <input type="text" name="ShotLocation" value="{{shotlocation}}" placeholder="Shot Location"><br>
         <textarea name="Notes" id="" cols="30" rows="10">{{notes}}</textarea>
     </form>
     <button>
-    <a href="/{{shotid}}/record">Edit Record</a>
+    <a href="/record/{{medid}}/{{shotid}}">Edit Record</a>
     </button>
         <button>
-    <a href="/{{shotid}}/deleterecord">Delete Shot Record</a>
+    <a href="/deleterecord/{{medid}}/{{shotid}}">Delete Shot Record</a>
     </button>
 {{/each}}
 
@@ -17,5 +17,5 @@
 </button>
 
 <button>
-    <a href="/newrecord">Add New Shot Record</a>
+    <a href="/newrecord/{{medid}}">Add New Shot Record</a>
 </button>

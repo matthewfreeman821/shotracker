@@ -1,5 +1,5 @@
-    <form action="/{{shotid}}/record" method="POST">
-        <input type="text" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS">
+    <form action="/record/{{medid}}/{{shotid}}" method="POST">
+        <input type="date" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS">
         <input type="text" name="ShotLocation" value="{{shotlocation}}" placeholder="Shot Location"><br>
         <textarea name="Notes" cols="30" rows="10">{{notes}}</textarea>
         <input type="submit">
@@ -7,7 +7,7 @@
     </form>
 
 <button>
-    <a href="/record">Return to Record Page</a>
+    <a href="/record/{{medid}}">Return to Record Page</a>
 </button>
 
 <button>

@@ -1,10 +1,10 @@
-<form action="/newrecord" method="POST">
-    <input type="text" name="ShotTime" placeholder="YYYY/MM/DD HH:MM:SS">
-    <input type="text" name="ShotLocation" placeholder="Shot Location"><br>
-    <textarea name="Notes" id="" cols="30" rows="10"></textarea>
+<form action="/newrecord/{{medid}}" method="POST">        
+    <input type="date" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS">
+    <input type="text" name="ShotLocation" value="{{shotlocation}}" placeholder="Shot Location"><br>
+    <textarea name="Notes" cols="30" rows="10">{{notes}}</textarea>
     <input type="submit">
     <input type="reset">
-</form>
+    </form>
 
 <button>
     <a href="/">Return Home</a>

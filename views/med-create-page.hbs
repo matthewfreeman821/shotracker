@@ -1,8 +1,8 @@
     <form action="/newmed" method="POST">
-        <input type="text" name="MedName" placeholder="Med Name">
-        <input type="text" name="AmtAvail" placeholder="Quantity Remaining">
-        <input type="text" name="LotNum" placeholder="Numbers/Letters">
-        <input type="text" name="ExpDate" placeholder="MM/DD/YYYY">
+        <input type="text" name="MedName" value="{{medname}}" placeholder="Med Name">
+        <input type="text" name="AmtAvail" value="{{amtavail}}" placeholder="Quantity Remaining">
+        <input type="text" name="LotNum" value="{{lotnum}}" placeholder="Numbers/Letters">
+        <input type="text" name="ExpDate" value="{{expdate}}" placeholder="MM/DD/YYYY">
         <input type="submit">
         <input type="reset">
     </form>

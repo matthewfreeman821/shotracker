@@ -25,7 +25,7 @@ function getUserById(id) {
 };
 // Get User by Github Id
 function getUserGithubId(id) {
-    return db.any('select * from Users where GithubId=$1', [id]);
+    return db.oneOrNone('select * from Users where GithubId=$1', [id]);
 };
 // Update User By ID
 function setUserById(id,LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity){
@@ -68,10 +68,14 @@ function setUserAge(id, newTitle){
 function deleteUserById(id){
     return db.result('delete from Users where id=$1', [id])
 };
-// ADD USER
-function addUser(GithubId, LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity){
-    return db.one("insert into Users (GithubId, LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity) values ($1, '$2#', '$3#', '$4#', '$5#', '$6#', '$7#', '$8#', '$9#') returning id", [GithubId, LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity]);
+// UPDATE USER
+function updateUser(LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity){
+    return db.result("update Users set (LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity) = ('$1#, '$2#', '$3#', '$4#', '$5#', '$6#', '$7#', '$8#') returning id", [LastName, FirstName, Email, Height, BodyWeight, Age, Gender, Ethnicity]);
 };
+// ADD USER BY GITHUB ID
+function addUserByGithubId(GithubId){
+    return db.one("insert into Users (GithubId) values ($1) returning id", [GithubId])
+}
 
 // var userInfo = [
 //    '2',
@@ -207,7 +211,8 @@ module.exports = {
     deleteMedById,
     deleteUserById,
     deleteShotById,
-    addUser,
+    addUserByGithubId,
+    updateUser,
     addMed,
     addShot
 };
