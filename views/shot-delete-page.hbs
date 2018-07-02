@@ -2,9 +2,9 @@
      <img src="/images/Logo.png" alt="Shot Tracker" srcset="">
      <form action="/deleterecord/{{medid}}/{{shotid}}" method="POST">
             <input type="hidden" name="medid" value="{{medid}}" class="input">
-            <input type="date" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS" class="input">
+            <input type="text" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS" class="input">
             <input type="text" name="ShotLocation" value="{{shotlocation}}" placeholder="Shot Location" class="input">
-            <textarea name="Notes" cols="30" rows="10" placeholder="Notes" class="input">{{notes}}</textarea>
+            <textarea name="Notes" cols="30" rows="10" placeholder="Notes" class="textarea">{{notes}}</textarea>
             <br>
             <input type="submit" class="button is-danger">
             <br>

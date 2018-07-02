@@ -8,17 +8,19 @@
             <input type="text" name="ExpDate" value="{{expdate}}" placeholder="MM/DD/YYYY" class="input">
         </form>
         <br>
-        <button class="button is-warning">
-            <a href="/{{medid}}/med">Edit Medicine</a>
-        </button>
-        <br>
-        <button class="button is-danger">
-            <a href="/{{medid}}/deletemed">Delete Medicine</a>
-        </button>
-        <br>
-        <button class="button is-info">
-            <a href="/record/{{medid}}">Record</a>
-        </button>
+        <div class="side">
+            <button class="button is-light">
+                <a href="/{{medid}}/med">Edit Medicine</a>
+            </button>
+            
+            <button class="button is-danger">
+                <a href="/{{medid}}/deletemed">Delete Medicine</a>
+            </button>
+            
+            <button class="button is-light">
+                <a href="/record/{{medid}}">Record</a>
+            </button>
+        </div>
         <br>
     {{/each}}
 </div>

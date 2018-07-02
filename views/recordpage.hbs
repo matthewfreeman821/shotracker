@@ -2,18 +2,20 @@
     <img src="/images/Logo.png" alt="Shot Tracker" srcset="">
     {{#each Shot}} 
         <form>
-            <input type="date" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS" class="input">
+            <input type="text" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS" class="input">
             <input type="text" name="ShotLocation" value="{{shotlocation}}" placeholder="Shot Location" class="input">
-            <textarea name="Notes" id="" cols="30" rows="10" class="input">{{notes}}</textarea>
+            <textarea name="Notes" id="" cols="30" rows="10" class="textarea">{{notes}}</textarea>
         </form>
         <br>
-        <button class="button is-warning">
-        <a href="/record/{{medid}}/{{shotid}}">Edit Record</a>
-        </button>
-        <br>
-        <button class="button is-danger">
-        <a href="/deleterecord/{{medid}}/{{shotid}}">Delete Shot Record</a>
-        </button>
+        <div class="side">
+            <button class="button is-light">
+            <a href="/record/{{medid}}/{{shotid}}">Edit Record</a>
+            </button>
+            <br>
+            <button class="button is-danger">
+            <a href="/deleterecord/{{medid}}/{{shotid}}">Delete Shot Record</a>
+            </button>
+        </div>
         <br>
     {{/each}}
 </div>

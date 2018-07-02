@@ -24,7 +24,7 @@ create table Medicine (
 
 create table Shot (
     ShotId serial primary key,
-    ShotTime timestamp,
+    ShotTime varchar(30),
     MedId int,
     foreign key (MedId) references Medicine(MedId)
     on delete cascade,
