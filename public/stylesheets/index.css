@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5rem;
+    height: 80%;
+    /* width: 50%; */
+    background-color: rgb(177, 207, 219);
+}
+
+.container h1 {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.container nav {
+    display: flex;
+    padding: 2rem;
+    justify-content: space-evenly;
+}
+
+.container span {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* padding: 0 3px; */
+}
+
+.container footer {
+    display: flex;
+    justify-content: center;
+    padding: 5rem; 
+    margin-top: 10rem;
+}
+
+.container form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container img {
+    display: flex;
+    text-align: center;
+    margin: 5rem auto;
+    width: 20rem;
+}
+
+.side {
+    display: flex;
+    justify-content: space-around;
+}

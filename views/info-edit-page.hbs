@@ -1,15 +1,23 @@
-<form action="/{{id}}/info" method="POST">
-        <input type="text" name="LastName" value="{{lastname}}" placeholder="Last Name">
-        <input type="text" name="FirstName" value="{{firstname}}" placeholder="First"><br>
-        <input type="email" name="Email" value="{{email}}" placeholder="Email@email.com"><br>
-        <input type="number" name="Age" value="{{age}}" placeholder="Years Old">
-        <input type="number" name="Height" value="{{height}}" placeholder="In Inches">
-        <input type="number" name="BodyWeight" value="{{bodyweight}}" placeholder="In Lbs"><br>
-        <input type="text" name="Gender" value="{{gender}}">Male or Female<br>
-        <input type="text" name="Ethnicity" value="{{ethnicity}}" placeholder="Ethnicity"><br>
-        <input type="submit">
-    </form>
-
-<button>
-    <a href="/">Return Home</a>
-</button>
+<div class="container">
+    <img src="/images/Logo.png" alt="Shot Tracker" srcset="">
+    <form action="/{{id}}/info" method="POST">
+            <input type="text" name="LastName" value="{{lastname}}" placeholder="Last Name" class="input">
+            <input type="text" name="FirstName" value="{{firstname}}" placeholder="First" class="input"><br>
+            <input type="email" name="Email" value="{{email}}" placeholder="Email@email.com" class="input"><br>
+            <input type="number" name="Age" value="{{age}}" placeholder="Years Old" class="input">
+            <input type="number" name="Height" value="{{height}}" placeholder="In Inches" class="input">
+            <input type="number" name="BodyWeight" value="{{bodyweight}}" placeholder="In Lbs" class="input"><br>
+            <input type="text" name="Gender" value="{{gender}}" class="input">Male or Female<br>
+            <input type="text" name="Ethnicity" value="{{ethnicity}}" placeholder="Ethnicity" class="input"><br>
+            <input type="submit" class='button is-primary'>
+        </form>
+</div>
+<div class="container">
+    <button class="button is-success">
+        <a href="/">Return Home</a>
+    </button>
+    <br>
+    <footer>
+        &copy; 2018 Matt and Bhisma
+    </footer>
+</div>
