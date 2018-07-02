@@ -2,7 +2,7 @@ const passport = require('passport');
 const GithubStrategy = require('passport-github').Strategy;
 const session = require('express-session');
 var FileStore = require('session-file-store')(session);
-
+const ShotTracker = require('./db');
 // const cookieParser = require('cookie-parser')
 // const users = require('./users');
 
@@ -28,7 +28,23 @@ const setupAuth = (app) => {
     callbackURL: "http://localhost:3000/github/auth"
   }, (accessToken, refreshToken, profile, done) => {
 
-    return done(null, profile);
+    console.log(profile)
+
+    ShotTracker.getUserGithubId(profile.id)
+    .then((user) => {
+      console.log('WE GOT THE PROFILE BEEP')
+      if(user){
+        done(null, user);
+      }else {
+        ShotTracker.addUserByGithubId(profile.id)
+        .then((newUser) => {
+          done(null, newUser);
+        })
+        .catch((error) =>{
+          console.log(error);
+        })
+      }
+    });
     // // TODO: replace this with code that finds the user
     // // in the database.
     // let theUser = users.find(u => u.id === profile.id);
@@ -105,7 +121,18 @@ const setupAuth = (app) => {
       console.log('you just logged in');
       console.log(req.isAuthenticated());
 
-      res.redirect('/');
+      req.session.save(() => {
+        // make sure the session is saved
+        // before we send them to the homepage!
+        ShotTracker.getUserById(req.session.passport.user)
+        .then((user) =>{
+          if(user.FirstName != ""){
+            res.redirect('/info');
+          } else {
+            res.redirect('/newinfo')
+          }
+        })
+      });
     }
   );
 

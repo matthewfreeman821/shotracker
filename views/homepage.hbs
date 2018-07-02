@@ -1,5 +1,11 @@
 <h1>SHOT TRACKER</h1>
 
+{{#if isLoggedIn}}
+    <a href="/logout">Log Out</a>
+{{else}}
+    <a href="/login">Log In</a>
+{{/if}}
+
 <nav>
     <button>
         <a href="/info">Personal Info</a>
@@ -7,7 +13,5 @@
     <button>
         <a href="/med">Medicine</a>
     </button>
-    <button>
-        <a href="/record">Record</a>
-    </button>
+
 </nav>
