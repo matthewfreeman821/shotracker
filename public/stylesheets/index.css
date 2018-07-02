@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5rem;
+    /* width: 50%; */
+}
+
+.container h1 {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.container nav {
+    display: flex;
+    padding: 2rem;
+    justify-content: space-evenly;
+}
+
+.container span {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* padding: 0 3px; */
+}
+
+.container footer {
+    display: flex;
+    justify-content: center;
+    padding: 5rem; 
+    margin-top: 10rem;
+}

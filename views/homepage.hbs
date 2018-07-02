@@ -1,17 +1,29 @@
-<h1>SHOT TRACKER</h1>
+<div class='container'>
+    <h1>SHOT TRACKER</h1>
 
-{{#if isLoggedIn}}
-    <a href="/logout">Log Out</a>
-{{else}}
-    <a href="/login">Log In</a>
-{{/if}}
+    <span>
+        {{#if isLoggedIn}}
+            <button class="button">
+                <a href="/logout">Log Out</a>
+            </button>
+        {{else}}
+            <button class="button">
+                <a href="/login">Log In</a>
+            </button>
+        {{/if}}
+    </span>
 
-<nav>
-    <button class="button is-success">
-        <a href="/info">Personal Info</a>
-    </button>
-    <button>
-        <a href="/med">Medicine</a>
-    </button>
 
-</nav>
+    <nav>
+        <button class="button is-success">
+            <a href="/info">Personal Info</a>
+        </button>
+        <button class="button is-warning">
+            <a href="/med">Medicine</a>
+        </button>
+
+    </nav>
+    <footer>
+        &copy; 2018 Matt and Bhisma
+    </footer>
+</div>
