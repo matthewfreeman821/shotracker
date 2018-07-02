@@ -4,6 +4,7 @@
     flex-direction: column;
     padding: 5rem;
     /* width: 50%; */
+    background-color: rgb(177, 207, 219);
 }
 
 .container h1 {
@@ -30,4 +31,10 @@
     justify-content: center;
     padding: 5rem; 
     margin-top: 10rem;
+}
+
+.container form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
