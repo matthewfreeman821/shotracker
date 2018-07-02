@@ -21,6 +21,7 @@ app.set('view engine', '.hbs');
 
 const static = express.static;
 app.use(static('public'));
+app.use(static('public/images'));
 
 setupAuth(app);
 

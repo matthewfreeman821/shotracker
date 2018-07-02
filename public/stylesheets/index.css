@@ -3,6 +3,7 @@
     justify-content: center;
     flex-direction: column;
     padding: 5rem;
+    height: 80%;
     /* width: 50%; */
     background-color: rgb(177, 207, 219);
 }
@@ -11,6 +12,7 @@
     display: flex;
     justify-content: center;
     padding: 2rem;
+    text-align: center;
 }
 
 .container nav {
@@ -37,4 +39,11 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+.container img {
+    display: flex;
+    text-align: center;
+    margin: 5rem auto;
+    width: 20rem;
 }
