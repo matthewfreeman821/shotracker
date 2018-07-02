@@ -1,24 +1,36 @@
-{{#each Medicine}} 
-    <form>
-        <input type="text" name="MedName" value="{{medname}}" placeholder="Med Name">
-        <input type="text" name="AmtAvail" value="{{amtavail}}" placeholder="Quantity Remaining">
-        <input type="text" name="LotNum" value="{{lotnum}}" placeholder="Numbers/Letters">
-        <input type="text" name="ExpDate" value="{{expdate}}" placeholder="MM/DD/YYYY">
-    </form>
-    <button>
-        <a href="/{{medid}}/med">Edit Medicine</a>
+<div class="container">
+    <h1>Shot Tracker <br> Medicine Information</h1>
+    {{#each Medicine}} 
+        <form>
+            <input type="text" name="MedName" value="{{medname}}" placeholder="Med Name" class="input">
+            <input type="text" name="AmtAvail" value="{{amtavail}}" placeholder="Quantity Remaining" class="input">
+            <input type="text" name="LotNum" value="{{lotnum}}" placeholder="Numbers/Letters" class="input">
+            <input type="text" name="ExpDate" value="{{expdate}}" placeholder="MM/DD/YYYY" class="input">
+        </form>
+        <br>
+        <button class="button is-warning">
+            <a href="/{{medid}}/med">Edit Medicine</a>
+        </button>
+        <br>
+        <button class="button is-danger">
+            <a href="/{{medid}}/deletemed">Delete Medicine</a>
+        </button>
+        <br>
+        <button class="button is-info">
+            <a href="/record/{{medid}}">Record</a>
+        </button>
+        <br>
+    {{/each}}
+</div>
+<div class="container">
+    <button class="button is-success">
+        <a href="/">Return Home</a>
     </button>
-    <button>
-        <a href="/{{medid}}/deletemed">Delete Medicine</a>
+    <br>
+    <button class="button is-primary">
+        <a href="/newmed">Add New Med</a>
     </button>
-    <button>
-        <a href="/record/{{medid}}">Record</a>
-    </button>
-{{/each}}
-
-<button>
-    <a href="/">Return Home</a>
-</button>
-<button>
-    <a href="/newmed">Add New Med</a>
-</button>
+    <footer>
+        &copy; 2018 Matt and Bhisma
+    </footer>
+</div>

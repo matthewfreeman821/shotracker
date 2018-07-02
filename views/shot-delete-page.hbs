@@ -1,16 +1,25 @@
- <form action="/deleterecord/{{medid}}/{{shotid}}" method="POST">
-        <input type="hidden" name="medid" value="{{medid}}">
-        <input type="date" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS">
-        <input type="text" name="ShotLocation" value="{{shotlocation}}" placeholder="Shot Location"><br>
-        <textarea name="Notes" cols="30" rows="10">{{notes}}</textarea>
-        <input type="submit">
-        <input type="reset">
-    </form>
-
-<button>
-    <a href="/record/{{medid}}">Return to Record Page</a>
-</button>
-
-<button>
-    <a href="/">Return Home</a>
-</button>
+ <div class="container">
+     <h1>Shot Tracker <br> Delete a Shot Record</h1>
+     <form action="/deleterecord/{{medid}}/{{shotid}}" method="POST">
+            <input type="hidden" name="medid" value="{{medid}}" class="input">
+            <input type="date" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS" class="input">
+            <input type="text" name="ShotLocation" value="{{shotlocation}}" placeholder="Shot Location" class="input">
+            <textarea name="Notes" cols="30" rows="10" placeholder="Notes" class="input">{{notes}}</textarea>
+            <br>
+            <input type="submit" class="button is-danger">
+            <br>
+            <input type="reset" class="button is-warning">
+        </form>
+</div>
+<div class="container">    
+    <button class="button is-info">
+        <a href="/record/{{medid}}">Return to Record Page</a>
+    </button>
+    <br>
+    <button class="button is-success">
+        <a href="/">Return Home</a>
+    </button>
+    <footer>
+        &copy; 2018 Matt and Bhisma
+    </footer>
+</div>

@@ -1,11 +1,20 @@
-<form action="/newrecord/{{medid}}" method="POST">        
-    <input type="date" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS">
-    <input type="text" name="ShotLocation" value="{{shotlocation}}" placeholder="Shot Location"><br>
-    <textarea name="Notes" cols="30" rows="10">{{notes}}</textarea>
-    <input type="submit">
-    <input type="reset">
-    </form>
-
-<button>
-    <a href="/">Return Home</a>
-</button>
+<div class="container">
+    <h1>Shot Tracker <br> Create a New Shot Record</h1>
+    <form action="/newrecord/{{medid}}" method="POST">        
+        <input type="date" name="ShotTime" value="{{shottime}}" placeholder="YYYY/MM/DD HH:MM:SS" class="input">
+        <input type="text" name="ShotLocation" value="{{shotlocation}}" placeholder="Shot Location" class="input">
+        <textarea name="Notes" cols="30" rows="10" placeholder="Notes" class="input">{{notes}}</textarea>
+        <br>
+        <input type="submit" class="button is-primary">
+        <br>
+        <input type="reset" class="button is-warning">
+        </form>
+</div>
+<div class="container">
+    <button class="button is-success">
+        <a href="/">Return Home</a>
+    </button>
+    <footer>
+        &copy; 2018 Matt and Bhisma
+    </footer>
+</div>

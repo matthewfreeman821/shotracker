@@ -1,12 +1,22 @@
+<div class="container">    
+    <h1>Shot Tracker <br> Create New Medicine Record</h1>
     <form action="/newmed" method="POST">
-        <input type="text" name="MedName" value="{{medname}}" placeholder="Med Name">
-        <input type="text" name="AmtAvail" value="{{amtavail}}" placeholder="Quantity Remaining">
-        <input type="text" name="LotNum" value="{{lotnum}}" placeholder="Numbers/Letters">
-        <input type="text" name="ExpDate" value="{{expdate}}" placeholder="MM/DD/YYYY">
-        <input type="submit">
-        <input type="reset">
+        <input type="text" name="MedName" value="{{medname}}" placeholder="Med Name" class="input">
+        <input type="text" name="AmtAvail" value="{{amtavail}}" placeholder="Quantity Remaining" class="input">
+        <input type="text" name="LotNum" value="{{lotnum}}" placeholder="Numbers/Letters" class="input">
+        <input type="text" name="ExpDate" value="{{expdate}}" placeholder="MM/DD/YYYY" class="input">
+        <br>
+        <input type="submit" class="button is-primary">
+        <br>
+        <input type="reset" class="button is-warning">
     </form>
-
-    <button>
+</div>
+<div class="container">
+    <button class="button is-primary">
     <a href="/med">Return To Med List</a>
     </button>
+    <br>
+    <footer>
+        &copy; 2018 Matt and Bhisma
+    </footer>
+</div>
